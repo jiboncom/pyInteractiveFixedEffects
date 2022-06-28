@@ -6,7 +6,9 @@
 
 ## Usage
 First, we need to import the module into our script. 
-```import bai2009```
+```python
+import bai2009
+```
 
 Then we need the initiate the estimator by specifying the number of factors in the model. 
 ```python
