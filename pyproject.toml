@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pyInteractiveFixedEffects"
+version = "0.0.1"
+authors = [
+  { name="Javier Boncompte", email="jiboncom@gmail.com" },
+]
+description = "Python implementation of the Interactive Fixed Effects estimator presented in Bai (2009)."
+readme = "README.md"
+license={file="LICENSE"}
+requires-python = ">=3.7"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+[project.urls]
+"Homepage" = "https://github.com/jiboncom/pyInterativeFixedEffects"
+"Bug Tracker" = "https://github.com/jiboncom/pyInterativeFixedEffects/issues"
+
