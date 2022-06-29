@@ -15,7 +15,7 @@ Then we need the initiate the estimator by specifying the number of factors in t
 # Load the  Interactive Fixed Effects estimator with r=3 factors
 ife = bai2009.InteractiveFixedEffects(3)
 ```
-Finally, there are two ways to estimate a model with interactive effects.
+Finally, there are two ways to estimate a model with interactive fixed effects (ife).
 
 ### Estimation from a Patsy formula
 The easiest way to estimate a model is using a [Patsy](https://github.com/pydata/patsy) formula to specify the model.  
@@ -36,3 +36,9 @@ betas, F, Lambda = ife.fit(
                         df['T'].values[:,np.newaxis] # Second level of the factor model (T)
                     )
 ```
+## Estimation results
+The estimator returns:
+* $\beta$ a $p\times 1$ vector of coefficients associated with the observables.
+* $F$ a $T\times r$ matrix of the factors on the $T$ dimension.
+* $\Lambda$ a $N\times r$ matrix of the loadings on the $N$ dimension.
+
