@@ -18,7 +18,7 @@ ife = bai2009.InteractiveFixedEffects(3)
 Finally, there are two ways to estimate a model with interactive fixed effects (ife).
 
 ### Estimation from a Patsy formula
-The easiest way to estimate a model is using a [Patsy](https://github.com/pydata/patsy) formula to specify the model.  
+The easiest way to get an estimate is using a [Patsy](https://github.com/pydata/patsy) formula to specify the model. The regression is specified as normal and we add an additional term `~ife(I,T)`at the end to specify the columns of the data with the $N$ and $T$ index of each observation. 
 ```python
 # Estimate the model using a Patsy formula
 betas, F, Lambda = ife.fit_from_formula('Y~0+X1+X2~ife(I,T)', df)
