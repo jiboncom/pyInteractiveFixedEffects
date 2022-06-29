@@ -1,5 +1,5 @@
 # Panel Data Models with Interactive Fixed Effects
-*Python implementation by [Javier Boncompte](mailto:javier.boncompte.19@ucl.ac.uk) of the **Interactive Fixed Effects Model** for panel data presented in [Bai (2009)](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6135).*
+*Python implementation of the **Interactive Fixed Effects Estimator** for panel data presented in [Bai (2009)](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6135).*
 
 ## Installation
 ```pip install pyInteractiveFixedEffects```
@@ -41,4 +41,3 @@ The estimator returns:
 * $\beta$ a $p\times 1$ vector of coefficients associated with the observables.
 * $F$ a $T\times r$ matrix of the factors on the $T$ dimension.
 * $\Lambda$ a $N\times r$ matrix of the loadings on the $N$ dimension.
-
