@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: pyInteractiveFixedEffects
-Version: 0.0.1
+Version: 0.0.2
 Summary: Python implementation of the Interactive Fixed Effects estimator presented in Bai (2009).
 Author-email: Javier Boncompte <jiboncom@gmail.com>
 License: MIT License
@@ -24,8 +24,8 @@ License: MIT License
         LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
         SOFTWARE.
-Project-URL: Homepage, https://github.com/jiboncom/pyInterativeFixedEffects
-Project-URL: Bug Tracker, https://github.com/jiboncom/pyInterativeFixedEffects/issues
+Project-URL: Homepage, https://github.com/jiboncom/pyInteractiveFixedEffects
+Project-URL: Bug Tracker, https://github.com/jiboncom/pyInteractiveFixedEffects/issues
 Classifier: Programming Language :: Python :: 3
 Classifier: License :: OSI Approved :: MIT License
 Classifier: Operating System :: OS Independent
@@ -34,5 +34,45 @@ Description-Content-Type: text/markdown
 License-File: LICENSE
 
 # Panel Data Models with Interactive Fixed Effects
-*Python implementation by [Javier Boncompte](mailto:javier.boncompte.19@ucl.ac.uk) of the **Interactive Fixed Effects Model** for panel data presented in [Bai (2009)](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6135).*
+*Python implementation of the **Interactive Fixed Effects Estimator** for panel data presented in [Bai (2009)](https://onlinelibrary.wiley.com/doi/abs/10.3982/ECTA6135).*
 
+## Installation
+```pip install pyInteractiveFixedEffects```
+
+## Usage
+First, we need to import the module into our script. 
+```python
+import bai2009
+```
+
+Then we need the initiate the estimator by specifying the number of factors in the model. 
+```python
+# Load the  Interactive Fixed Effects estimator with r=3 factors
+ife = bai2009.InteractiveFixedEffects(3)
+```
+Finally, there are two ways to estimate a model with interactive fixed effects (ife).
+
+### Estimation from a Patsy formula
+The easiest way to get an estimate is using a [Patsy](https://github.com/pydata/patsy) formula to specify the model. The regression is specified as normal and we add an additional term `~ife(I,T)`at the end to specify the columns of the data with the $N$ and $T$ index of each observation. 
+```python
+# Estimate the model using a Patsy formula
+betas, F, Lambda = ife.fit_from_formula('Y~0+X1+X2~ife(I,T)', df)
+```
+
+### Estimation from explicit definition of terms
+If you prefer to specify each term explicitly in your code, you can use the code below.
+
+```python
+# Alternatively, estimate the model specifying every term explicitly
+betas, F, Lambda = ife.fit(
+                        df['Y'].values[:,np.newaxis], # Outcome
+                        df[['X1', 'X2']].values, # Observable regressors
+                        df['I'].values[:,np.newaxis], # First level of the factor model (I)
+                        df['T'].values[:,np.newaxis] # Second level of the factor model (T)
+                    )
+```
+## Estimation results
+The estimator returns:
+* $\beta$ a $p\times 1$ vector of coefficients associated with the observables.
+* $F$ a $T\times r$ matrix of the factors on the $T$ dimension.
+* $\Lambda$ a $N\times r$ matrix of the loadings on the $N$ dimension.
