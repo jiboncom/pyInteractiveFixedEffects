@@ -1,1 +1,4 @@
 .pypirc
+src/pyInteractiveFixedEffects.egg-info
+dist
+src/pyInteractiveFixedEffects.egg-info/PKG-INFO
